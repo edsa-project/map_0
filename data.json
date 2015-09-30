@@ -1,0 +1,86 @@
+{
+    "56": {
+        "value": 9.1,
+        "name": "Belgium"
+    },
+    "100": {
+        "value": 0.95,
+        "name": "Bulgaria"
+    },
+    "191": {
+        "value": 2.29,
+        "name": "Croatia"
+    },
+    "203": {
+        "value": 2.01,
+        "name": "Czech Republic"
+    },
+    "233": {
+        "value": 1.9,
+        "name": "Estonia"
+    },
+    "250": {
+        "value": 9.43,
+        "name": "France"
+    },
+    "300": {
+        "value": 3.35,
+        "name": "Greece"
+    },
+    "348": {
+        "value": 1.97,
+        "name": "Hungary"
+    },
+    "372": {
+        "value": 8.65,
+        "name": "Ireland"
+    },
+    "428": {
+        "value": 1.71,
+        "name": "Latvia"
+    },
+    "440": {
+        "value": 1.76,
+        "name": "Lithuania"
+    },
+    "442": {
+        "value": 11.1,
+        "name": "Luxembourg"
+    },
+    "470": {
+        "value": 4.06,
+        "name": "Malta"
+    },
+    "528": {
+        "value": 9.07,
+        "name": "Netherlands"
+    },
+    "616": {
+        "value": 2.21,
+        "name": "Poland"
+    },
+    "620": {
+        "value": 2.92,
+        "name": "Portugal"
+    },
+    "642": {
+        "value": 1.06,
+        "name": "Romania"
+    },
+    "703": {
+        "value": 1.94,
+        "name": "Slovakia"
+    },
+    "705": {
+        "value": 4.53,
+        "name": "Slovenia"
+    },
+    "724": {
+        "value": 3.91,
+        "name": "Spain"
+    },
+    "826": {
+        "value": 7.78,
+        "name": "United Kingdom"
+    }
+}
