@@ -52,7 +52,12 @@
     function ready(error, europe, data) {
         if (error) return console.error(error);
     
-        var quantize = d3.scale.quantile()
+        
+    var tooltip = d3.select("#container").append("div")
+                                             .attr("id", "tooltip")
+                                             .style("position", "absolute");
+
+    var quantize = d3.scale.quantile()
                  .domain(d3.extent(d3.values(data), function (d) { return d.value; }))
                  .range(d3.range(6)),
             cb = "Reds";
@@ -90,6 +95,75 @@
             .attr("d", path)
             .attr("class", "country")
             .classed("eu-country", isEuCountry);
+
+
+svg.selectAll(".eu-country")
+    .style("fill", fill)
+    .on("mouseover", function (d) {
+        var p = path.centroid(d),
+            val = data[d.properties.iso_n3] && data[d.properties.iso_n3].value,
+            datum = val !== undefined ? val : "No data",
+            name = d.properties.name;
+        tooltip.style("visibility", "visible")
+               .style("left", p[0] + "px")
+               .style("top", p[1] + "px")
+               .html('<div class="tt-title">' + name + '</div>' + 
+                        '<div>' + datum + '</div>'
+                       );
+     })
+     .on("mouseout", function (d) {
+         tooltip.style("visibility", "hidden");
+     });
+
+
+
+
+
+var lw = 120,
+    lh = 150;
+ 
+// Number of different colors in scale
+var extent = 6,
+    bounds = path.bounds(eu),
+    yMin = bounds[0][1],
+    xMax = bounds[1][0];
+var w = lw / 4,
+    h = lh / extent,
+    offset = 5,
+    format = d3.format("4.2f");
+ 
+var legend = svg.append("g").attr("transform", "translate(" + (xMax - lw) + "," + (yMin) + ")")
+ 
+var content = legend.append("rect").attr("width", lw).attr("height", lh).attr("fill", "white").attr("stroke", "lightblue");
+ 
+legend.selectAll(".c-rect")
+      .data(d3.range(extent))
+    .enter().append("rect")
+      .attr("width", w)
+      .attr("height", h - offset)
+      .attr("x", w / 2 )
+      .attr("y", function (d, i) {
+          return (i * h) + offset;
+      })
+      .attr("fill", function (d, i) {
+          return colorbrewer[cb][extent][d];
+      });
+ 
+legend.selectAll("text")
+    .data(d3.range(extent))
+  .enter().append("text")
+    .attr("x", 2.3 * w)
+    .attr("y", function (d, i) {
+       return (i * h) + 4 * offset; 
+    })
+    .text(function (d, i) {
+        var inv = quantize.invertExtent(d);
+        return "≤ " + format(inv[1]);
+    })
+    .style("font-family", "Arial")
+    .style("font-size", "10pt");
+
+
          
         svg.selectAll(".eu-country")
             .style("fill", fill);
